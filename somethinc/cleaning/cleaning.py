@@ -12,7 +12,9 @@ dataset = json.load(open(os.path.join(work_dir, 'dataset', 'product.json')))
 clean_dataset = []
 for x in dataset:
     for key, value in x.items():
-        if key == ['price', 'product_name']:
+        if key == 'price':
+            x[key] = value[0]
+        elif key == 'product_name':
             x[key] = value[0]
         else:
             value = [v.replace('\n', '').replace('\t', '').replace(';', ',').replace('Â\xa0', '').replace('xÂ\xa0', '').replace('Â\xa0', '').replace("/", "").replace(",", "").replace("â€¢", "").replace("*", "").replace("-", "").strip() for v in value]
